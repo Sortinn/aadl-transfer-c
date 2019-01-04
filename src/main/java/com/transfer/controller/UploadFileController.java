@@ -1,6 +1,7 @@
 package com.transfer.controller;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ public class UploadFileController {
 
     @RequestMapping(value = "/single", method = RequestMethod.POST)
     public String uploadSingleFile(@RequestParam("file") MultipartFile file) throws IOException {
-        if (!file.isEmpty()) {
+        if (!file.isEmpty() && FilenameUtils.getExtension(file.getOriginalFilename()).equals("xml")) {
                 LOGGER.info("uploading file...");
                 FileUtils.copyInputStreamToFile(file.getInputStream(), new File("/Users/sortinn/Desktop", System.currentTimeMillis() + file.getOriginalFilename()));
                 LOGGER.info("upload file success.");
