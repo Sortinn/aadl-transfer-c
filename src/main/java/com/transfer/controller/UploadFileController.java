@@ -37,7 +37,7 @@ public class UploadFileController {
     }
 
     @RequestMapping(value = "/single", method = RequestMethod.POST)
-    public String uploadSingleFile(@RequestParam("file") MultipartFile file) throws IOException {
+    public String uploadAndTransfer(@RequestParam("file") MultipartFile file) throws IOException {
         if (!file.isEmpty() && FilenameUtils.getExtension(file.getOriginalFilename()).equals("xml")) {
             String acceptedFilename = file.getOriginalFilename() + System.currentTimeMillis();
             String filePath = BASE_PATH + acceptedFilename;
