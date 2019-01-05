@@ -8,9 +8,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,12 +26,12 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/show")
-public class UploadFileController {
+public class FileController {
 
     private static final String BASE_PATH = "/Users/sortinn/";
     private static final String DES_DIR_PATH = "/Users/sortinn/tranfer-result";
     public static final String DOWNLOAD_PATH = "/Users/sortinn/Download";
-    private static Logger LOGGER = LoggerFactory.getLogger(UploadFileController.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(FileController.class);
 
 
     @Resource
@@ -46,7 +43,7 @@ public class UploadFileController {
 
     @RequestMapping("/index")
     public String showIndex() {
-        return "file";
+        return "index";
     }
 
     @RequestMapping(value = "/single", method = RequestMethod.POST)
@@ -65,7 +62,7 @@ public class UploadFileController {
         return "fail";
     }
 
-    @RequestMapping(value = "/download", method = RequestMethod.POST)
+    @RequestMapping(value = "/download", method = RequestMethod.GET)
     public void downloadFile(HttpServletRequest request, HttpServletResponse response,
                                                @RequestParam("filename") String filename) throws IOException {
 

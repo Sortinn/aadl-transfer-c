@@ -19,21 +19,26 @@
 </head>
 <body>
 <div align="center">
-    <form method="get" action="/transfer-c/show/download">
+    <form method="post" action="${pageContext.request.contextPath}/show/index" enctype="multipart/form-data">
         <div class="col-md-4">
-            <button type="button" class="btn btn-success" disabled="disabled" style="margin-top: 50px">上传成功！</button>
-            <input type="text" class="form-control" id="filedownload" name="filename" style="margin-top: 55px" placeholder="为转换后的文件起个名字吧"/>
+            <button type="button" class="btn btn-success" disabled="disabled" style="margin-top: 50px">下载成功！</button>
+            <input type="text" class="form-control" id="filedownload" name="filename" style="margin-top: 55px"
+                   placeholder="为转换后的文件起个名字吧"/>
             <div class="progress" style="margin-top: 30px">
-                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 50%;">
+                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                     style="min-width: 2em; width: 100%;">
                     50%
                 </div>
             </div>
-            <button type="submit" class="btn btn-info" style="margin-top: 57px">点击下载文件</button>
+            <button type="submit" class="btn btn-info" style="margin-top: 57px">下载完成</button>
         </div>
-    </form>
+</div>
+</form>
 </div>
 
+<div>
 
+</div>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"

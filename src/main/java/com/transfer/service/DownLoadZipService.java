@@ -33,6 +33,5 @@ public class DownLoadZipService {
         } catch (IOException e) {
             LOGGER.error("download error.");
         }
-
     }
 }
