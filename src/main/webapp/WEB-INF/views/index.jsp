@@ -22,7 +22,8 @@
     <form method="post" action="${pageContext.request.contextPath}/show/single" enctype="multipart/form-data">
         <div class="form-group">
             <label for="fileupload">添加AADL模型文件</label>
-            <input type="file" class="form-control" id="fileupload" name="file" aria-describedby="fileHelp"
+            <input style="margin: auto;width: 400px " type="file" class="form-control" id="fileupload" name="file"
+                   aria-describedby="fileHelp"
                    placeholder="添加文件">
             <small id="fileHelp" class="form-text text-muted">We'll never share your files with anyone else.</small>
 

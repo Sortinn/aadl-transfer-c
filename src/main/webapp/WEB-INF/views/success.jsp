@@ -21,14 +21,16 @@
 <div align="center">
     <form method="get" action="/transfer-c/show/download">
         <div class="col-md-4">
-            <button type="button" class="btn btn-success" disabled="disabled" style="margin-top: 50px">上传成功！</button>
-            <input type="text" class="form-control" id="filedownload" name="filename" style="margin-top: 55px" placeholder="为转换后的文件起个名字吧"/>
-            <div class="progress" style="margin-top: 30px">
-                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 50%;">
-                    50%
-                </div>
-            </div>
-            <button type="submit" class="btn btn-info" style="margin-top: 57px">点击下载文件</button>
+            <button id="success" type="button" class="btn btn-success" style="margin-top: 50px">上传成功！</button>
+            <input onkeyup="value=value.replace(/[\W]/g,'') "
+                   onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+                   onkeydown="if(event.keyCode==13)event.keyCode=9" type="text" class="form-control" id="filedownload" name="filename" style="margin-top: 30px" placeholder="为转换后的文件起个名字吧"/>
+            <%--<div class="progress" style="margin-top: 30px">--%>
+                <%--<div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="min-width: 2em; width: 50%;">--%>
+                    <%--50%--%>
+                <%--</div>--%>
+            <%--</div>--%>
+            <button id="downsuccess" type="submit" class="btn btn-info" style="margin-top: 30px">点击下载文件</button>
         </div>
     </form>
 </div>
