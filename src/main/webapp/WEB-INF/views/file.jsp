@@ -24,14 +24,14 @@
             <label for="fileupload">添加AADL模型文件</label>
             <input type="file" class="form-control" id="fileupload" name="file" aria-describedby="fileHelp"
                    placeholder="添加文件">
-            <small id="fileHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <small id="fileHelp" class="form-text text-muted">We'll never share your files with anyone else.</small>
 
-            <!--进度条-->
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                    <span class="sr-only">45% Complete</span>
-                </div>
-            </div>
+            <%--<!--进度条-->--%>
+            <%--<div class="progress">--%>
+            <%--<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">--%>
+            <%--<span class="sr-only">45% Complete</span>--%>
+            <%--</div>--%>
+            <%--</div>--%>
         </div>
         <button type="submit" class="btn btn-primary">上传并转换</button>
     </form>
