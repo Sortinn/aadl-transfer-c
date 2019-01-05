@@ -26,7 +26,9 @@ import java.util.Map;
 public class UploadFileController {
 
     private static final String BASE_PATH = "/Users/sortinn/";
+    private static final String DES_DIR_PATH = "/Users/sortinn/tranfer-result";
     private static Logger LOGGER = LoggerFactory.getLogger(UploadFileController.class);
+
 
     @Resource
     private TransferToCService transferToCService;
@@ -39,13 +41,13 @@ public class UploadFileController {
     @RequestMapping(value = "/single", method = RequestMethod.POST)
     public String uploadAndTransfer(@RequestParam("file") MultipartFile file) throws IOException {
         if (!file.isEmpty() && FilenameUtils.getExtension(file.getOriginalFilename()).equals("xml")) {
-            String acceptedFilename = file.getOriginalFilename() + System.currentTimeMillis();
+            String acceptedFilename = System.nanoTime() + file.getOriginalFilename();
             String filePath = BASE_PATH + acceptedFilename;
             FileUtils.copyInputStreamToFile(file.getInputStream(), new File(BASE_PATH, acceptedFilename));
-            transferToCService.transer(filePath);
+            transferToCService.transer(filePath, DES_DIR_PATH);
             Map<String, Object> data = Maps.newHashMap();
             data.put("name", file.getOriginalFilename());
-            data.put("filePath",filePath);
+            data.put("filePath", filePath);
             LOGGER.info("data : {}, ", data);
             return "success";
         }
