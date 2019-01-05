@@ -19,24 +19,13 @@
 </head>
 <body>
 <div align="center">
-    <form method="post" action="${pageContext.request.contextPath}/upload/single" enctype="multipart/form-data">
-        <%--<div class="form-group">--%>
-        <%--<label for="fileupload">添加AADL模型文件</label>--%>
-        <%--<input type="file" class="form-control" id="fileupload" name="file" aria-describedby="fileHelp"--%>
-        <%--placeholder="添加文件">--%>
-        <%--<small id="fileHelp" class="form-text text-muted">We'll never share your files with anyone else.</small>--%>
-
-        <%--&lt;%&ndash;<!--进度条-->&ndash;%&gt;--%>
-        <%--&lt;%&ndash;<div class="progress">&ndash;%&gt;--%>
-        <%--&lt;%&ndash;<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">&ndash;%&gt;--%>
-        <%--&lt;%&ndash;<span class="sr-only">45% Complete</span>&ndash;%&gt;--%>
-        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+    <form method="post" action="/transfer-c/upload/download">
         <div class="col-md-4">
             <button type="button" class="btn btn-success" disabled="disabled">上传成功！</button>
-
+            <input type="text" class="form-control" id="filedownload" name="filename" placeholder="请输入下载地址"/>
             <button type="submit" class="btn btn-info">点击下载文件</button>
         </div>
+    </form>
 </div>
 
 
