@@ -88,42 +88,39 @@ public class TransferToCService {
         return jsonObject.toString();
     }
 
-    private File createCompleteHeaderFile(String desDirPath) {
+    private void createCompleteHeaderFile(String desDirPath) {
         String completeHeaderContent = "#include<stdio.h>\n#include<stdlib.h>\n\nint fun_control();";
         if (null == aadlPublic) {
-            return null;
+            return;
         }
         String systemTypeName = getSystemName(aadlPublic);
         File completeHeader = createFileAndWrite(systemTypeName, completeHeaderContent, H, desDirPath);
         fileList.add(completeHeader);
-        return completeHeader;
     }
 
 
-    private File createCompleteCFile(String desDirPath) {
+    private void createCompleteCFile(String desDirPath) {
         if (null == aadlPublic) {
-            return null;
+            return;
         }
         String processSubcomponentName = aadlPublic.getObject("systemImpl", JSONObject.class).getObject("subcomponents", JSONObject.class).getObject("processSubcomponent", JSONObject.class).getString("name");
         String completeCContent = "#include<Complete.h>\n\nint main(int argc, char const *argv[]){" + NEXT + "process();\n\t" + RETURN_0 + ";\n}\n\n" + "int process(){" + NEXT + "fun_control();\n\t" + RETURN_0 + ";\n}\n\nint control(){" + NEXT + "fun_thread();\n}";
         File completeC = createFileAndWrite(getSystemName(aadlPublic), completeCContent, C, desDirPath);
         fileList.add(completeC);
-        return completeC;
     }
 
-    private File createControlHeaderFile(String desDirPath) {
+    private void createControlHeaderFile(String desDirPath) {
         String controlHeaderContent = "#include<Complete.h>\n\nint fun_control();";
         if (null == aadlPublic) {
-            return null;
+            return;
         }
         String processTypeName = getProcessTypeName();
         File controlHeader = createFileAndWrite(processTypeName, controlHeaderContent, H, desDirPath);
         fileList.add(controlHeader);
-        return controlHeader;
 
     }
 
-    private File createControlCFile(String desDirPath) {
+    private void createControlCFile(String desDirPath) {
         JSONArray threadSubcomponentArray = aadlPublic.getObject("processImpl", JSONObject.class).getObject("subcomponents", JSONObject.class).getJSONArray("threadSubcomponent");
         JSONObject scaleSpeedData = (JSONObject) threadSubcomponentArray.get(0);
         if (scaleSpeedData != null) {
@@ -134,51 +131,46 @@ public class TransferToCService {
         String controlCContent = "#include<control.h>\n\nint fun_control(){\n\tread_data();" + NEXT + "control_laws();" + NEXT + RETURN_1 + ";\n}";
         File controlC = createFileAndWrite(getProcessTypeName(), controlCContent, C, desDirPath);
         fileList.add(controlC);
-        return controlC;
     }
 
-    private File createThreadReadDataHeaderFile(String desDirPath) {
+    private void createThreadReadDataHeaderFile(String desDirPath) {
         if (aadlPublic == null) {
-            return null;
+            return;
         }
         String threadReadDataName = getThreadReadDataName();
         String threadReadDataHeaderContent = "#include<control.h>\n\nint " + threadReadDataName + "();";
         File threadReadDataH = createFileAndWrite(threadReadDataName, threadReadDataHeaderContent, H, desDirPath);
         fileList.add(threadReadDataH);
-        return threadReadDataH;
     }
 
-    private File createThreadControlLawsHeaderFile(String desDirPath) {
+    private void createThreadControlLawsHeaderFile(String desDirPath) {
         if (aadlPublic == null) {
-            return null;
+            return;
         }
         String threadControlLawsName = getThreadControlLawsName();
         String threadReadControlLawsContent = "#include<control.h>\n\nint " + threadControlLawsName + "();";
         File threadControlLawsH = createFileAndWrite(threadControlLawsName, threadReadControlLawsContent, H, desDirPath);
         fileList.add(threadControlLawsH);
-        return threadControlLawsH;
     }
 
-    private File createThreadReadDataCFile(String desDirPath) {
+    private void createThreadReadDataCFile(String desDirPath) {
         if (aadlPublic == null) {
-            return null;
+            return;
         }
         String threadReadDataName = getThreadReadDataName();
         String content = "#include<" + threadReadDataName + ".h>\n\nint " + threadReadDataName + "(){" + NEXT + "fun_" + threadReadDataName + "();" + NEXT + RETURN_1 + ";\n}";
         File threadReadDataC = createFileAndWrite(threadReadDataName, content, C, desDirPath);
         fileList.add(threadReadDataC);
-        return threadReadDataC;
     }
 
-    private File createThreadControlLawsCFile(String desDirPath) {
+    private void createThreadControlLawsCFile(String desDirPath) {
         if (aadlPublic == null) {
-            return null;
+            return;
         }
         String threadControlLawsName = getThreadControlLawsName();
         String content = "#include<" + threadControlLawsName + ".h>\n\nint " + threadControlLawsName + "(){" + NEXT + "fun_" + threadControlLawsName + "();" + NEXT + RETURN_1 + ";\n}";
         File threadControlLawsC = createFileAndWrite(threadControlLawsName, content, C, desDirPath);
         fileList.add(threadControlLawsC);
-        return threadControlLawsC;
     }
 
 
