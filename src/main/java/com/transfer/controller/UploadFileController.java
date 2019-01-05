@@ -1,6 +1,8 @@
 package com.transfer.controller;
 
 import com.google.common.collect.Maps;
+import com.transfer.service.CreateZipService;
+import com.transfer.service.DownLoadZipService;
 import com.transfer.service.TransferToCService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.Map;
 
@@ -24,16 +28,21 @@ import java.util.Map;
  **/
 
 @Controller
-@RequestMapping("/upload")
+@RequestMapping("/show")
 public class UploadFileController {
 
     private static final String BASE_PATH = "/Users/sortinn/";
     private static final String DES_DIR_PATH = "/Users/sortinn/tranfer-result";
+    public static final String DOWNLOAD_PATH = "/Users/sortinn/Download";
     private static Logger LOGGER = LoggerFactory.getLogger(UploadFileController.class);
 
 
     @Resource
     private TransferToCService transferToCService;
+    @Resource
+    private CreateZipService createZipService;
+    @Resource
+    private DownLoadZipService downLoadZipService;
 
     @RequestMapping("/index")
     public String showIndex() {
@@ -57,28 +66,12 @@ public class UploadFileController {
     }
 
     @RequestMapping(value = "/download", method = RequestMethod.POST)
-    public ResponseEntity<byte[]> downloadFile(HttpServletRequest request,
+    public void downloadFile(HttpServletRequest request, HttpServletResponse response,
                                                @RequestParam("filename") String filename) throws IOException {
-        File file = new File(DES_DIR_PATH + "/Complete.c");
-        byte[] body = null;
-        InputStream inputStream = null;
-        try {
-             inputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            LOGGER.error("download file, file not found");
-        }
-        try {
-            body = new byte[inputStream.available()];
-        } catch (IOException e) {
-            LOGGER.error("io error");
-        }
-        if (body != null) {
-            inputStream.read(body);
-        }
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attchement;filename=" + filename);
-        HttpStatus statusCode = HttpStatus.OK;
-        ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(body, headers, statusCode);
-        return responseEntity;
+
+        createZipService.createZip(DES_DIR_PATH, BASE_PATH + filename + ".zip");
+        File file = new File(BASE_PATH + filename + ".zip");
+        LOGGER.info("file name:{}", file.getAbsolutePath());
+        downLoadZipService.downLoad(file, response);
     }
 }

@@ -19,7 +19,7 @@
 </head>
 <body>
 <div align="center">
-    <form method="post" action="${pageContext.request.contextPath}/upload/single" enctype="multipart/form-data">
+    <form method="post" action="${pageContext.request.contextPath}/show/single" enctype="multipart/form-data">
         <div class="form-group">
             <label for="fileupload">添加AADL模型文件</label>
             <input type="file" class="form-control" id="fileupload" name="file" aria-describedby="fileHelp"

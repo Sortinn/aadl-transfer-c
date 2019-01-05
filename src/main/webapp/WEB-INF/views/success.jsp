@@ -19,10 +19,10 @@
 </head>
 <body>
 <div align="center">
-    <form method="post" action="/transfer-c/upload/download">
+    <form method="post" action="/transfer-c/show/download">
         <div class="col-md-4">
             <button type="button" class="btn btn-success" disabled="disabled">上传成功！</button>
-            <input type="text" class="form-control" id="filedownload" name="filename" placeholder="请输入下载地址"/>
+            <input type="text" class="form-control" id="filedownload" name="filename" placeholder="为转换后的文件起个名字吧"/>
             <button type="submit" class="btn btn-info">点击下载文件</button>
         </div>
     </form>

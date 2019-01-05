@@ -35,9 +35,9 @@ public class TransferToCService {
     public void transer(String xmlFilePath, String desDirPath) {
         setFiles(xmlFilePath);
         try {
-            createZipFile(desDirPath);
+            createDir(desDirPath);
         } catch (IOException e) {
-            LOGGER.error("createZipFile error, xmlFilePath:{}, desDirPath:{}", xmlFilePath, desDirPath);
+            LOGGER.error("createDir error, xmlFilePath:{}, desDirPath:{}", xmlFilePath, desDirPath);
         }
     }
 
@@ -50,7 +50,7 @@ public class TransferToCService {
         aadlPublic = getAadlPublic();
     }
 
-    private void createZipFile(String desDirPath) throws IOException {
+    private void createDir(String desDirPath) throws IOException {
         File desDir = new File(desDirPath);
         if (!desDir.isDirectory()) {
             desDir.mkdir();
