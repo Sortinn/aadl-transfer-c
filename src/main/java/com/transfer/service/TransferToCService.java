@@ -72,7 +72,7 @@ public class TransferToCService {
         jsonString = parseXmlToJson(filePath);
     }
 
-    private static String parseXmlToJson(String xmlFilePath) {
+    public static String parseXmlToJson(String xmlFilePath) {
         StringBuilder sb = new StringBuilder();
         try {
             InputStreamReader reader = new InputStreamReader(new FileInputStream(new File(xmlFilePath)));
