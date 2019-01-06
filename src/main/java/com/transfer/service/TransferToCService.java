@@ -32,7 +32,7 @@ public class TransferToCService {
     private List<File> fileList = Lists.newArrayList();
 
 
-    public void transer(String xmlFilePath, String desDirPath) {
+    public void transfer(String xmlFilePath, String desDirPath) {
         setFiles(xmlFilePath);
         try {
             createDir(desDirPath);

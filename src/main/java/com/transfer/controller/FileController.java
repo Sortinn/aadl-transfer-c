@@ -52,7 +52,7 @@ public class FileController {
             String acceptedFilename = System.nanoTime() + file.getOriginalFilename();
             String filePath = BASE_PATH + acceptedFilename;
             FileUtils.copyInputStreamToFile(file.getInputStream(), new File(BASE_PATH, acceptedFilename));
-            transferToCService.transer(filePath, DES_DIR_PATH);
+            transferToCService.transfer(filePath, DES_DIR_PATH);
             Map<String, Object> data = Maps.newHashMap();
             data.put("name", file.getOriginalFilename());
             data.put("filePath", filePath);
