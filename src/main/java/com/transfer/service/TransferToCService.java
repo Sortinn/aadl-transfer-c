@@ -221,4 +221,12 @@ public class TransferToCService {
         }
         return null;
     }
+
+    public String getXmlFilePath() {
+        return xmlFilePath;
+    }
+
+    public void setXmlFilePath(String xmlFilePath) {
+        this.xmlFilePath = xmlFilePath;
+    }
 }
