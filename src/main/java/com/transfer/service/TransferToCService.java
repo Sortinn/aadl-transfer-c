@@ -215,9 +215,9 @@ public class TransferToCService {
             printWriter.close();
             return file;
         } catch (FileNotFoundException e) {
-            System.out.println("file not found.");
+            LOGGER.error("file not found.");
         } catch (UnsupportedEncodingException e) {
-            System.out.println("unsupported encoding.");
+            LOGGER.error("unsupported encoding.");
         }
         return null;
     }
