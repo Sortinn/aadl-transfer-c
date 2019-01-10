@@ -82,7 +82,7 @@ public class TransferToCService {
                 sb.append(readLine);
             }
         } catch (IOException e) {
-            System.out.println("read file error");
+            LOGGER.error("read file error");
         }
         org.json.JSONObject jsonObject = XML.toJSONObject(sb.toString());
         return jsonObject.toString();
